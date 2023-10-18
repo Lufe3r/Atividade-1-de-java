@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class GerenciadorNotas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Quantas disciplinas você possui no semestre? ");
+        int numDisciplinas = scanner.nextInt();
+
+        System.out.print("Qual é a média mínima para aprovação? ");
+        double mediaMinima = scanner.nextDouble();
+
+        String[] nomesDisciplinas = new String[numDisciplinas];
+        double[] mediasDisciplinas = new double[numDisciplinas];
+
+        for (int i = 0; i < numDisciplinas; i++) {
+            scanner.nextLine(); // Limpar o buffer
+            System.out.print("Nome da disciplina " + (i + 1) + ": ");
+            nomesDisciplinas[i] = scanner.nextLine();
+
+            System.out.print("Nota da P1: ");
+            double notaP1 = scanner.nextDouble();
+            System.out.print("Nota da P2: ");
+            double notaP2 = scanner.nextDouble();
+            System.out.print("Nota do Trabalho: ");
+            double notaTrabalho = scanner.nextDouble();
+
+            // Calcular a média da disciplina
+            double mediaDisciplina = (notaP1 + notaP2 + notaTrabalho) / 3.0;
+            mediasDisciplinas[i] = mediaDisciplina;
+        }
+
+        // Apresentar o boletim do aluno
+        System.out.println("\nBoletim do Aluno:");
+
+        for (int i = 0; i < numDisciplinas; i++) {
+            System.out.println("Disciplina: " + nomesDisciplinas[i]);
+            System.out.println("Média: " + mediasDisciplinas[i]);
+
+            if (mediasDisciplinas[i] >= mediaMinima) {
+                System.out.println("Situação: Aprovado");
+            } else {
+                System.out.println("Situação: Reprovado");
+            }
+
+            System.out.println(); // Linha em branco para separar as disciplinas
+        }
+
+        scanner.close();
+    }
+}
